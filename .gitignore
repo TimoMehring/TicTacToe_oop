@@ -1,0 +1,13 @@
+build/
+release/
+*.exe
+*.o
+
+# macOS-Systemdateien ignorieren
+.DS_Store
+
+# Lokale VS-Code-Einstellungen ignorieren
+.vscode/
+
+
+notes.md
