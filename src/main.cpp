@@ -1,26 +1,31 @@
 #include "raylib.h"
-
+#include "playground.h"
 int main(void)
 {
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenWidth = 1200;
+    const int screenHeight = 800;
 
     InitWindow(screenWidth, screenHeight, "TicTacToe");
 
-    SetTargetFPS(60);              
+    SetTargetFPS(60); 
+    
+    Playground playground;
+    playground.LoadGraphics();
 
     while (!WindowShouldClose())    
     {
 
         BeginDrawing();
+        
+        ClearBackground(LIGHTGRAY);
 
-            ClearBackground(GREEN);
+        playground.Draw();
 
-            DrawText("Projekt Start!", 190, 200, 20, LIGHTGRAY);
 
         EndDrawing();
         
     }
+    playground.UnloadGraphics();
 
     CloseWindow();        
 
