@@ -13,9 +13,17 @@ class Playground {
     Texture2D redPlayerMarkTexture;
     Texture2D bluePlayerMarkTexture;
 
+    ZoneState zones [3][3];
+    Rectangle fields [3][3];
+
+    ZoneState currentPlayer = ZoneState::PlayerRed;
+
     public:
     void LoadGraphics();
     void UnloadGraphics();
+
+    void InitFields();
+    void UpdatePlayground();
     void Draw();
     
 

@@ -11,9 +11,11 @@ int main(void)
     
     Playground playground;
     playground.LoadGraphics();
+    playground.InitFields();
 
     while (!WindowShouldClose())    
     {
+        playground.UpdatePlayground();
 
         BeginDrawing();
         
