@@ -3,13 +3,19 @@
 #include "playground.h"
 
 enum class GameState{
-    Startscreen
+    ChooseStartingPlayer,
+    PlayerRedTurn,
+    PlayerBlueTurn,
+    PlayerRedWins,
+    PlayerBlueWins
 };
 
 class Game {
     private:
-    GameState currentState = GameState::Startscreen;
+    Playground playground;
+    GameState currentState = GameState::ChooseStartingPlayer;
 
     public:
+    void ChooseStartingPlayer();
     void Update();
 };

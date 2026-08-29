@@ -71,3 +71,7 @@ void Playground::Draw(){
         }
     }
 }
+
+bool CheckWin(ZoneState player){
+    
+}

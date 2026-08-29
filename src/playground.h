@@ -25,6 +25,8 @@ class Playground {
     void InitFields();
     void UpdatePlayground();
     void Draw();
+
+    bool CheckWin(ZoneState player);
     
 
 };
