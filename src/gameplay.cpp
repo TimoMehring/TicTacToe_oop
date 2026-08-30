@@ -1,6 +1,6 @@
 #include "gameplay.h"
 
-void Game::ChooseStartingPlayer(){
+/* void Game::ChooseStartingPlayer(){
     int randomPlayer = GetRandomValue(0, 1);
 
      if (randomPlayer == 0){
@@ -9,25 +9,39 @@ void Game::ChooseStartingPlayer(){
      else{
         currentState = GameState::PlayerBlueWins;
      }
+} */
+
+
+
+void Game::LoadGraphics(){
+    playground.LoadGraphics();
+}
+
+void Game::UnloadGraphics(){
+    playground.UnloadGraphics();
+}
+
+void Game::Init(){
+    playground.InitFields();
 }
 
 void Game::Update(){
-    switch(currentState){
-        case GameState::ChooseStartingPlayer:
-            ChooseStartingPlayer();
-            break;
+    if(currentState == GameState::Playing){
+        if(playground.UpdatePlayground(currentPlayer)){
+            SwitchPlayer();
+        }
+    }
+}
 
-        case GameState::PlayerRedTurn:
-            break;
+void Game::Draw(){
+    playground.Draw();
+}
 
-        case GameState::PlayerBlueTurn:
-            break;
-
-        case GameState::PlayerRedWins:
-            break;
-
-        case GameState::PlayerBlueWins:
-            break;
-        
+void Game::SwitchPlayer(){
+    if(currentPlayer == ZoneState::PlayerRed){
+        currentPlayer = ZoneState::PlayerBlue;
+    }
+    else{
+        currentPlayer = ZoneState::PlayerRed;
     }
 }

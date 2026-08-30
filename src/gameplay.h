@@ -3,9 +3,7 @@
 #include "playground.h"
 
 enum class GameState{
-    ChooseStartingPlayer,
-    PlayerRedTurn,
-    PlayerBlueTurn,
+    Playing,
     PlayerRedWins,
     PlayerBlueWins
 };
@@ -13,9 +11,17 @@ enum class GameState{
 class Game {
     private:
     Playground playground;
-    GameState currentState = GameState::ChooseStartingPlayer;
+    GameState currentState = GameState::Playing;
+    ZoneState currentPlayer = ZoneState::PlayerRed;
 
     public:
-    void ChooseStartingPlayer();
+    void LoadGraphics();
+    void UnloadGraphics();
+
+    void Init();
+
     void Update();
+    void Draw();
+
+    void SwitchPlayer();
 };

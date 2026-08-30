@@ -1,5 +1,7 @@
 #include "raylib.h"
 #include "playground.h"
+#include "gameplay.h"
+
 int main(void)
 {
     const int screenWidth = 1200;
@@ -9,25 +11,25 @@ int main(void)
 
     SetTargetFPS(60); 
     
-    Playground playground;
-    playground.LoadGraphics();
-    playground.InitFields();
+    Game game;
+    game.LoadGraphics();
+    game.Init();
 
     while (!WindowShouldClose())    
     {
-        playground.UpdatePlayground();
+        game.Update();
 
         BeginDrawing();
         
         ClearBackground(LIGHTGRAY);
 
-        playground.Draw();
+        game.Draw();
 
 
         EndDrawing();
         
     }
-    playground.UnloadGraphics();
+    game.UnloadGraphics();
 
     CloseWindow();        
 

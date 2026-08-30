@@ -16,14 +16,14 @@ class Playground {
     ZoneState zones [3][3];
     Rectangle fields [3][3];
 
-    ZoneState currentPlayer = ZoneState::PlayerRed;
+    //ZoneState currentPlayer = ZoneState::PlayerRed;
 
     public:
     void LoadGraphics();
     void UnloadGraphics();
 
     void InitFields();
-    void UpdatePlayground();
+    bool UpdatePlayground(ZoneState player);
     void Draw();
 
     bool CheckWin(ZoneState player);
