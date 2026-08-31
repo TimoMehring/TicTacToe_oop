@@ -83,10 +83,24 @@ void Playground::Draw(){
 }
 
 bool Playground::CheckWin(ZoneState currentZoneState){
+    // horizontal check
     for(int row = 0; row < 3; row++){
-        if(zones[row][0] == currentZoneState && zones[row][1] == currentZoneState &&zones[row][2] == currentZoneState){
+        if(zones[row][0] == currentZoneState && zones[row][1] == currentZoneState && zones[row][2] == currentZoneState){
             return true;
         }
     }
+    // vertical check
+    for(int col = 0; col < 3; col++){
+        if(zones[0][col] == currentZoneState && zones[1][col] == currentZoneState && zones[2][col] == currentZoneState){
+            return true;
+        }
+    }
+    if(zones[0][0] == currentZoneState && zones[1][1] == currentZoneState && zones[2][2] == currentZoneState){
+        return true;
+    }
+    else if(zones[2][0] == currentZoneState && zones[1][1] == currentZoneState && zones[0][2] == currentZoneState){
+        return true;
+    }
+    
     return false;
 }
