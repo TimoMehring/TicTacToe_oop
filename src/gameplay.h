@@ -5,7 +5,8 @@
 enum class GameState{
     Playing,
     PlayerRedWins,
-    PlayerBlueWins
+    PlayerBlueWins,
+    Draw
 };
 
 class Game {

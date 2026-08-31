@@ -37,12 +37,15 @@ void Game::Update(){
                     currentState = GameState::PlayerBlueWins;
                 }
             }
+            else if(playground.CheckDraw()){
+                currentState = GameState::Draw;
+            }
             else{
             SwitchPlayer();
             }
         }
     }
-    else if(currentState == GameState::PlayerRedWins || currentState == GameState::PlayerBlueWins){
+    else if(currentState == GameState::PlayerRedWins || currentState == GameState::PlayerBlueWins || currentState == GameState::Draw){
         if(IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             ResetGame();
         }
@@ -64,6 +67,10 @@ void Game::Draw(){
     else if(currentState == GameState::PlayerBlueWins){
         playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
         DrawText("Wins", 625, 300, 80, WHITE);
+        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
+    }
+    else if(currentState == GameState::Draw){
+        DrawText("Draw", 625, 300, 80, WHITE);
         DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
     }
 }

@@ -41,6 +41,7 @@ class Playground {
     void DrawWinningPlayerTextures(ZoneState winner);
 
     bool CheckWin(ZoneState currentZoneState);
+    bool CheckDraw();
 
     void UpdateBorderAnimation();
     void DrawBorderAnimation();

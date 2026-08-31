@@ -118,6 +118,17 @@ bool Playground::CheckWin(ZoneState currentZoneState){
     return false;
 }
 
+bool Playground::CheckDraw(){
+    for(int row = 0; row < 3; row++){
+        for(int col = 0; col < 3; col++){
+            if(zones[row][col] == ZoneState::Empty){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 void Playground::DrawWinningPlayerTextures(ZoneState winner){
     DrawTextureEx(clearWinningTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE);
     if(winner == ZoneState::PlayerRed){
