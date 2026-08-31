@@ -28,13 +28,31 @@ void Game::Init(){
 void Game::Update(){
     if(currentState == GameState::Playing){
         if(playground.UpdatePlayground(currentPlayer)){
+            if(playground.CheckWin(currentPlayer)){
+                if(currentPlayer == ZoneState::PlayerRed){
+                    currentState = GameState::PlayerRedWins;
+                }
+                else{
+                    currentState = GameState::PlayerBlueWins;
+                }
+            }
+            else{
             SwitchPlayer();
+            }
         }
     }
 }
 
 void Game::Draw(){
     playground.Draw();
+
+    // temoporary, create later DrawWinner method
+    if(currentState ==GameState::PlayerRedWins){
+        DrawText("Player Red wins!", 430, 650, 40, RED);
+    }
+    else if(currentState == GameState::PlayerBlueWins){
+        DrawText("Player Blue wins!", 430, 650, 40, BLUE);
+    }
 }
 
 void Game::SwitchPlayer(){

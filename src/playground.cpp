@@ -36,14 +36,14 @@ void Playground::InitFields(){
     }
 }
 
-bool Playground::UpdatePlayground(ZoneState player){
+bool Playground::UpdatePlayground(ZoneState currentZoneState){
     Vector2 mousePosition = GetMousePosition();
 
     for(int row = 0; row < 3; row++){
         for(int col = 0; col < 3; col++){
             if(CheckCollisionPointRec(mousePosition, fields[row][col]) && (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))){
                 if(zones[row][col] == ZoneState::Empty){
-                    zones[row][col] = player;
+                    zones[row][col] = currentZoneState;
 
                     return true;
                 }
@@ -69,6 +69,11 @@ void Playground::Draw(){
     }
 }
 
-bool CheckWin(ZoneState player){
-    
+bool Playground::CheckWin(ZoneState currentZoneState){
+    for(int row = 0; row < 3; row++){
+        if(zones[row][0] == currentZoneState && zones[row][1] == currentZoneState &&zones[row][2] == currentZoneState){
+            return true;
+        }
+    }
+    return false;
 }
