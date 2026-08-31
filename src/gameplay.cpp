@@ -51,10 +51,12 @@ void Game::Draw(){
         ClearBackground(LIGHTGRAY);
         playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
         DrawText("Wins", 625, 300, 80, WHITE);
+        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
     }
     else if(currentState == GameState::PlayerBlueWins){
         playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
         DrawText("Wins", 625, 300, 80, WHITE);
+        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
     }
 }
 

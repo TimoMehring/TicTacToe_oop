@@ -17,6 +17,7 @@ class Playground {
     Texture2D redPlayerMarkTexture;
     Texture2D bluePlayerMarkTexture;
 
+    Texture2D clearWinningTexture;
     Texture2D redPlayerWinsTexture;
     Texture2D bluePlayerWinsTexture;
 
