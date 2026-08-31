@@ -12,6 +12,8 @@ class Playground {
     Texture2D playgroundTexture;
     Texture2D redPlayerMarkTexture;
     Texture2D bluePlayerMarkTexture;
+    Texture2D playerRedTexture;
+    Texture2D playerBlueTexture;
 
     ZoneState zones [3][3];
     Rectangle fields [3][3];

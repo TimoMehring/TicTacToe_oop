@@ -2,6 +2,8 @@
 
 void Playground::LoadGraphics(){
     playgroundTexture = LoadTexture("assets/playground.png");
+    playerRedTexture = LoadTexture("assets/playerred.png");
+    playerBlueTexture = LoadTexture("assets/playerblue.png");
 
     redPlayerMarkTexture = LoadTexture("assets/playerredmark.png");
     bluePlayerMarkTexture = LoadTexture("assets/playerbluemark.png");
@@ -9,6 +11,8 @@ void Playground::LoadGraphics(){
 
 void Playground::UnloadGraphics(){
     UnloadTexture(playgroundTexture);
+    UnloadTexture(playerRedTexture);
+    UnloadTexture(playerBlueTexture);
 
     UnloadTexture(redPlayerMarkTexture);
     UnloadTexture(bluePlayerMarkTexture);
@@ -56,6 +60,8 @@ bool Playground::UpdatePlayground(ZoneState currentZoneState){
 
 void Playground::Draw(){
     DrawTextureEx(playgroundTexture, {340.0f, 100.0f}, 0.0f, 10.0f, WHITE);
+    DrawTextureEx(playerBlueTexture, {50.0f, 200.0f}, 0.0f, 8.0f, WHITE);
+    DrawTextureEx(playerRedTexture, {900.0f, 200.0f}, 0.0f, 8.0f, WHITE);
 
     for (int row = 0; row < 3; row++){
         for (int col = 0; col < 3; col++){
