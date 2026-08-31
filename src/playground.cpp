@@ -2,6 +2,7 @@
 
 void Playground::LoadGraphics(){
     playgroundTexture = LoadTexture("assets/playground.png");
+    borderAnimationTexture = LoadTexture("assets/playground_animation.png");
     reloadTexture = LoadTexture("assets/reload.png");
 
     playerRedTexture = LoadTexture("assets/playerred.png");
@@ -17,6 +18,7 @@ void Playground::LoadGraphics(){
 
 void Playground::UnloadGraphics(){
     UnloadTexture(playgroundTexture);
+    UnloadTexture(borderAnimationTexture);
     UnloadTexture(reloadTexture);
 
     UnloadTexture(playerRedTexture);
@@ -105,6 +107,7 @@ bool Playground::CheckWin(ZoneState currentZoneState){
             return true;
         }
     }
+    // diagonal checks
     if(zones[0][0] == currentZoneState && zones[1][1] == currentZoneState && zones[2][2] == currentZoneState){
         return true;
     }
@@ -123,4 +126,27 @@ void Playground::DrawWinningPlayerTextures(ZoneState winner){
     else if(winner == ZoneState::PlayerBlue){
         DrawTextureEx(bluePlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
     }
+}
+
+void Playground::UpdateBorderAnimation(){
+    borderAnimationTimer += GetFrameTime();
+
+    if(borderAnimationTimer >= 0.1){
+        currentBorderFrame++;
+
+        if(currentBorderFrame >= 9){
+            currentBorderFrame = 0;
+        }
+        borderAnimationTimer = 0.0f;
+    }
+}
+
+void Playground::DrawBorderAnimation(){
+    float frameWidth = borderAnimationTexture.width / 9.0f;
+    float frameHeight = borderAnimationTexture.height;
+
+    Rectangle source = {currentBorderFrame * frameWidth, currentBorderFrame * 0.0f, frameWidth, frameHeight};
+    Rectangle destination = {320.0f, 80.0f, frameWidth  * 10.0f, frameHeight * 10.0f};
+
+    DrawTexturePro(borderAnimationTexture, source, destination, {0.0f, 0.0f}, 0.0f, WHITE);
 }

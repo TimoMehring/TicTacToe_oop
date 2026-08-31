@@ -27,6 +27,7 @@ void Game::Init(){
 
 void Game::Update(){
     if(currentState == GameState::Playing){
+        playground.UpdateBorderAnimation();
         if(playground.UpdatePlayground(currentPlayer)){
             if(playground.CheckWin(currentPlayer)){
                 if(currentPlayer == ZoneState::PlayerRed){
@@ -44,11 +45,13 @@ void Game::Update(){
 }
 
 void Game::Draw(){
-    playground.Draw();
+    if(currentState == GameState::Playing){
+        playground.Draw();
+        playground.DrawBorderAnimation();
+    }
 
     // temoporary, create later DrawWinner method
     if(currentState ==GameState::PlayerRedWins){
-        ClearBackground(LIGHTGRAY);
         playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
         DrawText("Wins", 625, 300, 80, WHITE);
         DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);

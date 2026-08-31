@@ -10,6 +10,12 @@ enum class ZoneState {
 class Playground {
     private:
     Texture2D playgroundTexture;
+    Texture2D borderAnimationTexture;
+    int currentBorderFrame = 0;
+    float borderAnimationTimer = 0.0f;
+    float frameWidth = borderAnimationTexture.width / 9.0f;
+    float frameHeight = borderAnimationTexture.height;
+
     Texture2D reloadTexture;
     Texture2D playerRedTexture;
     Texture2D playerBlueTexture;
@@ -35,6 +41,9 @@ class Playground {
     void DrawWinningPlayerTextures(ZoneState winner);
 
     bool CheckWin(ZoneState currentZoneState);
+
+    void UpdateBorderAnimation();
+    void DrawBorderAnimation();
     
 
 };
