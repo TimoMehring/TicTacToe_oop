@@ -24,4 +24,5 @@ class Game {
     void Draw();
 
     void SwitchPlayer();
+    void ResetGame();
 };

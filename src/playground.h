@@ -44,6 +44,8 @@ class Playground {
 
     void UpdateBorderAnimation();
     void DrawBorderAnimation();
+
+    void Reset();
     
 
 };

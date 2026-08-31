@@ -150,3 +150,11 @@ void Playground::DrawBorderAnimation(){
 
     DrawTexturePro(borderAnimationTexture, source, destination, {0.0f, 0.0f}, 0.0f, WHITE);
 }
+
+void Playground::Reset(){
+    for(int row = 0; row < 3; row++){
+        for(int col = 0; col < 3; col++){
+            zones[row][col] = ZoneState::Empty;
+        }
+    }
+}

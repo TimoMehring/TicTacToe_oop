@@ -42,6 +42,11 @@ void Game::Update(){
             }
         }
     }
+    else if(currentState == GameState::PlayerRedWins || currentState == GameState::PlayerBlueWins){
+        if(IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
+            ResetGame();
+        }
+    }
 }
 
 void Game::Draw(){
@@ -70,4 +75,11 @@ void Game::SwitchPlayer(){
     else{
         currentPlayer = ZoneState::PlayerRed;
     }
+}
+
+void Game::ResetGame(){
+    currentState = GameState::Playing;
+    currentPlayer = ZoneState::PlayerRed;
+
+    playground.Reset();
 }
