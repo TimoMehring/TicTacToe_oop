@@ -9,6 +9,9 @@ void Playground::LoadGraphics(){
 
     redPlayerMarkTexture = LoadTexture("assets/playerredmark.png");
     bluePlayerMarkTexture = LoadTexture("assets/playerbluemark.png");
+
+    redPlayerWinsTexture = LoadTexture("assets/playerredwins.png");
+    bluePlayerWinsTexture  = LoadTexture("assets/playerbluewins.png");
 }
 
 void Playground::UnloadGraphics(){
@@ -20,6 +23,9 @@ void Playground::UnloadGraphics(){
 
     UnloadTexture(redPlayerMarkTexture);
     UnloadTexture(bluePlayerMarkTexture);
+
+    UnloadTexture(redPlayerWinsTexture);
+    UnloadTexture(bluePlayerWinsTexture);
 }
 
 void Playground::InitFields(){
@@ -80,6 +86,8 @@ void Playground::Draw(){
             }
         }
     }
+
+    
 }
 
 bool Playground::CheckWin(ZoneState currentZoneState){
@@ -103,4 +111,14 @@ bool Playground::CheckWin(ZoneState currentZoneState){
     }
     
     return false;
+}
+
+void Playground::DrawWinningPlayerTextures(ZoneState winner){
+    if(winner == ZoneState::PlayerRed){
+        DrawTextureEx(redPlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
+    }
+    else if(winner == ZoneState::PlayerBlue){
+        DrawTextureEx(bluePlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
+    }
+    //DrawTextureEx(redPlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
 }

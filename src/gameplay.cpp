@@ -48,10 +48,13 @@ void Game::Draw(){
 
     // temoporary, create later DrawWinner method
     if(currentState ==GameState::PlayerRedWins){
-        DrawText("Player Red wins!", 430, 650, 40, RED);
+        ClearBackground(LIGHTGRAY);
+        playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
+        DrawText("Wins", 625, 300, 80, WHITE);
     }
     else if(currentState == GameState::PlayerBlueWins){
-        DrawText("Player Blue wins!", 430, 650, 40, BLUE);
+        playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
+        DrawText("Wins", 625, 300, 80, WHITE);
     }
 }
 

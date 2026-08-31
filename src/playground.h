@@ -17,6 +17,9 @@ class Playground {
     Texture2D redPlayerMarkTexture;
     Texture2D bluePlayerMarkTexture;
 
+    Texture2D redPlayerWinsTexture;
+    Texture2D bluePlayerWinsTexture;
+
     ZoneState zones [3][3];
     Rectangle fields [3][3];
 
@@ -28,6 +31,7 @@ class Playground {
     void InitFields();
     bool UpdatePlayground(ZoneState currentZoneState);
     void Draw();
+    void DrawWinningPlayerTextures(ZoneState winner);
 
     bool CheckWin(ZoneState currentZoneState);
     
