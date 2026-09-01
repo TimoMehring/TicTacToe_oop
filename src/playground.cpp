@@ -85,7 +85,7 @@ bool Playground::UpdatePlayground(ZoneState currentZoneState){
 
 void Playground::Draw(){
     DrawTextureEx(playgroundTexture, {340.0f, 100.0f}, 0.0f, 10.0f, WHITE);
-    DrawTextureEx(reloadTexture, {550.0f, 650.0f}, 0.0f, 3.0f, WHITE);
+    //DrawTextureEx(reloadTexture, {550.0f, 650.0f}, 0.0f, 3.0f, WHITE);
 
 
     DrawTextureEx(playerBlueTexture, {50.0f, 200.0f}, 0.0f, 8.0f, WHITE);
@@ -157,7 +157,7 @@ void Playground::DrawWinningPlayerTextures(ZoneState winner){
 void Playground::UpdateBorderAnimation(){
     borderAnimationTimer += GetFrameTime();
 
-    if(borderAnimationTimer >= 0.1){
+    if(borderAnimationTimer >= 0.5){
         currentBorderFrame++;
 
         if(currentBorderFrame >= 9){

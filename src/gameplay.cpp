@@ -48,7 +48,8 @@ void Game::Update(){
     else if(currentState == GameState::PlayerRedWins || currentState == GameState::PlayerBlueWins || currentState == GameState::Draw){
         // little text animation for winScreen
         restartTextTimer += GetFrameTime();
-        if(restartTextTimer >= 0.7){
+
+        if(restartTextTimer >= 1.0f){
             showRestartText = !showRestartText;
             restartTextTimer = 0.0f;
         }
@@ -70,18 +71,22 @@ void Game::Draw(){
 
     // temoporary, create later DrawWinner method
     if(currentState ==GameState::PlayerRedWins){
-        playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
+/*         playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
         DrawText("Wins", 625, 300, 80, WHITE);
-        //DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
+        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY); */
         if(!showRestartText){
+            playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
+            DrawText("Wins", 625, 300, 80, WHITE);
             DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
         }
     }
     else if(currentState == GameState::PlayerBlueWins){
-        playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
+/*         playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
         DrawText("Wins", 625, 300, 80, WHITE);
-        //DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
+        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY); */
         if(!showRestartText){
+            playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
+            DrawText("Wins", 625, 300, 80, WHITE);
             DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
         }
     }
@@ -106,6 +111,6 @@ void Game::ResetGame(){
 
     restartTextTimer = 0.0f;
     showRestartText = true;
-    
+
     playground.Reset();
 }
