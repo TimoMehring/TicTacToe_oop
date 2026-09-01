@@ -3,7 +3,6 @@
 void Playground::LoadAssets(){
     // Textures
     playgroundTexture = LoadTexture("assets/playground.png");
-    borderAnimationTexture = LoadTexture("assets/playground_animation.png");
     reloadTexture = LoadTexture("assets/reload.png");
 
     playerRedTexture = LoadTexture("assets/playerred.png");
@@ -16,6 +15,11 @@ void Playground::LoadAssets(){
     redPlayerWinsTexture = LoadTexture("assets/playerredwins.png");
     bluePlayerWinsTexture  = LoadTexture("assets/playerbluewins.png");
 
+    // Spritesheets
+    borderAnimationTexture = LoadTexture("assets/playground_animation.png");
+    playerRedTurnTexture = LoadTexture("assets/PlayerRedTurn.png");
+    playerBlueTurnTexture = LoadTexture("assets/PlayerBlueTurn.png");
+
     // Sound & Music Section
     markSound = LoadSound("assets/mark_sound.wav");
     winSound = LoadSound("assets/win_sound.wav");
@@ -24,7 +28,6 @@ void Playground::LoadAssets(){
 void Playground::UnloadAssets(){
     // Textures
     UnloadTexture(playgroundTexture);
-    UnloadTexture(borderAnimationTexture);
     UnloadTexture(reloadTexture);
 
     UnloadTexture(playerRedTexture);
@@ -36,6 +39,12 @@ void Playground::UnloadAssets(){
     UnloadTexture(clearWinningTexture);
     UnloadTexture(redPlayerWinsTexture);
     UnloadTexture(bluePlayerWinsTexture);
+
+    // Spritesheets
+    UnloadTexture(borderAnimationTexture);
+    UnloadTexture(playerRedTurnTexture);
+    UnloadTexture(playerBlueTurnTexture);
+
 
     // Sound & Music
     UnloadSound(markSound);
@@ -87,9 +96,8 @@ void Playground::Draw(){
     DrawTextureEx(playgroundTexture, {340.0f, 100.0f}, 0.0f, 10.0f, WHITE);
     //DrawTextureEx(reloadTexture, {550.0f, 650.0f}, 0.0f, 3.0f, WHITE);
 
-
-    DrawTextureEx(playerBlueTexture, {50.0f, 200.0f}, 0.0f, 8.0f, WHITE);
-    DrawTextureEx(playerRedTexture, {900.0f, 200.0f}, 0.0f, 8.0f, WHITE);
+    //DrawTextureEx(playerBlueTexture, {50.0f, 200.0f}, 0.0f, 8.0f, WHITE);
+    //DrawTextureEx(playerRedTexture, {900.0f, 200.0f}, 0.0f, 8.0f, WHITE);
 
     for (int row = 0; row < 3; row++){
         for (int col = 0; col < 3; col++){
@@ -182,5 +190,40 @@ void Playground::Reset(){
         for(int col = 0; col < 3; col++){
             zones[row][col] = ZoneState::Empty;
         }
+    }
+}
+
+void Playground::UpdatePlayerTurnAnimation(){
+    turnAnimationTimer += GetFrameTime();
+
+    if(turnAnimationTimer >= 0.5){
+        currentPlayerTurnFrame++;
+
+        if(currentPlayerTurnFrame >= 2){
+            currentPlayerTurnFrame = 0;
+        }
+        turnAnimationTimer = 0.0f;
+    }
+
+}
+
+void Playground::DrawPlayerTurnAnimation(ZoneState currentZoneState){
+    float frameWidth = playerBlueTurnTexture.width / 2.0f;
+    float frameHeight = playerBlueTurnTexture.height;
+
+    //Rectangle source = {currentBorderFrame * frameWidth, currentBorderFrame * 0.0f, frameWidth, frameHeight};
+    Rectangle source2 = {currentPlayerTurnFrame * frameWidth, 0.0f, frameWidth, frameHeight};
+    //Rectangle destination = {320.0f, 80.0f, frameWidth  * 10.0f, frameHeight * 10.0f};
+    Rectangle destination = {900.0f, 200.0f, frameWidth * 8.0f, frameHeight * 8.0f};
+    Rectangle destination2 = {50.0f, 200.0f, frameWidth * 8.0f, frameHeight * 8.0f};
+
+    if(currentZoneState == ZoneState::PlayerRed){
+        DrawTexturePro(playerRedTurnTexture, source2, destination, {0.0f,0.0f},0.0f,WHITE);
+        DrawTextureEx(playerBlueTexture, {50.0f, 200.0f}, 0.0f, 8.0f, WHITE);
+
+    }
+    else if(currentZoneState == ZoneState::PlayerBlue){
+        DrawTexturePro(playerBlueTurnTexture, source2, destination2, {0.0f,0.0f},0.0f,WHITE);
+        DrawTextureEx(playerRedTexture, {900.0f, 200.0f}, 0.0f, 8.0f, WHITE);
     }
 }

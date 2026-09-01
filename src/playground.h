@@ -10,11 +10,16 @@ enum class ZoneState {
 class Playground {
     private:
     Texture2D playgroundTexture;
-    Texture2D borderAnimationTexture;
+
+    // Border Animation
     int currentBorderFrame = 0;
     float borderAnimationTimer = 0.0f;
     float frameWidth = borderAnimationTexture.width / 9.0f;
     float frameHeight = borderAnimationTexture.height;
+
+    // Player Turn Animation
+    int currentPlayerTurnFrame = 0;
+    float turnAnimationTimer = 0.0f;
 
     Texture2D reloadTexture;
     Texture2D playerRedTexture;
@@ -26,6 +31,11 @@ class Playground {
     Texture2D clearWinningTexture;
     Texture2D redPlayerWinsTexture;
     Texture2D bluePlayerWinsTexture;
+
+    // Spritesheets
+    Texture2D borderAnimationTexture;
+    Texture2D playerBlueTurnTexture;
+    Texture2D playerRedTurnTexture;
 
     ZoneState zones [3][3];
     Rectangle fields [3][3];
@@ -48,6 +58,9 @@ class Playground {
 
     void UpdateBorderAnimation();
     void DrawBorderAnimation();
+
+    void UpdatePlayerTurnAnimation();
+    void DrawPlayerTurnAnimation(ZoneState currentZoneState);
 
     void Reset();
     

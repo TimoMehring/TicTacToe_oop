@@ -27,6 +27,7 @@ void Game::Init(){
 
 void Game::Update(){
     if(currentState == GameState::Playing){
+        playground.UpdatePlayerTurnAnimation();
         playground.UpdateBorderAnimation();
         if(playground.UpdatePlayground(currentPlayer)){
             if(playground.CheckWin(currentPlayer)){
@@ -49,7 +50,7 @@ void Game::Update(){
         // little text animation for winScreen
         restartTextTimer += GetFrameTime();
 
-        if(restartTextTimer >= 1.0f){
+        if(restartTextTimer >= 1.1f){
             showRestartText = !showRestartText;
             restartTextTimer = 0.0f;
         }
@@ -63,6 +64,10 @@ void Game::Update(){
 void Game::Draw(){
     playground.Draw();
     playground.DrawBorderAnimation();
+
+    if(currentState == GameState::Playing){
+        playground.DrawPlayerTurnAnimation(currentPlayer);
+    }
     
 /*     if(currentState == GameState::Playing){
         playground.Draw();
