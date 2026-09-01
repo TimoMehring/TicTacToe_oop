@@ -1,6 +1,7 @@
 #include "playground.h"
 
-void Playground::LoadGraphics(){
+void Playground::LoadAssets(){
+    // Textures
     playgroundTexture = LoadTexture("assets/playground.png");
     borderAnimationTexture = LoadTexture("assets/playground_animation.png");
     reloadTexture = LoadTexture("assets/reload.png");
@@ -14,9 +15,13 @@ void Playground::LoadGraphics(){
     clearWinningTexture = LoadTexture("assets/clear_winning.png");
     redPlayerWinsTexture = LoadTexture("assets/playerredwins.png");
     bluePlayerWinsTexture  = LoadTexture("assets/playerbluewins.png");
+
+    // Sound & Music Section
+    markSound = LoadSound("assets/mark_sound.wav");
 }
 
-void Playground::UnloadGraphics(){
+void Playground::UnloadAssets(){
+    // Textures
     UnloadTexture(playgroundTexture);
     UnloadTexture(borderAnimationTexture);
     UnloadTexture(reloadTexture);
@@ -30,6 +35,9 @@ void Playground::UnloadGraphics(){
     UnloadTexture(clearWinningTexture);
     UnloadTexture(redPlayerWinsTexture);
     UnloadTexture(bluePlayerWinsTexture);
+
+    // Sound & Music
+    UnloadSound(markSound);
 }
 
 void Playground::InitFields(){
@@ -63,6 +71,7 @@ bool Playground::UpdatePlayground(ZoneState currentZoneState){
                 if(zones[row][col] == ZoneState::Empty){
                     zones[row][col] = currentZoneState;
 
+                    PlaySound(markSound);
                     return true;
                 }
             }

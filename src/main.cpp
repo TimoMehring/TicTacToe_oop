@@ -8,6 +8,7 @@ int main(void)
     const int screenHeight = 800;
 
     InitWindow(screenWidth, screenHeight, "TicTacToe");
+    InitAudioDevice();
 
     SetTargetFPS(60); 
     

@@ -30,10 +30,12 @@ class Playground {
     ZoneState zones [3][3];
     Rectangle fields [3][3];
 
+    Sound markSound;
+
 
     public:
-    void LoadGraphics();
-    void UnloadGraphics();
+    void LoadAssets();
+    void UnloadAssets();
 
     void InitFields();
     bool UpdatePlayground(ZoneState currentZoneState);
