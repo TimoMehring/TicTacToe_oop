@@ -31,6 +31,7 @@ class Playground {
     Rectangle fields [3][3];
 
     Sound markSound;
+    Sound winSound;
 
 
     public:

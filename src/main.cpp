@@ -32,6 +32,7 @@ int main(void)
     }
     game.UnloadGraphics();
 
+    CloseAudioDevice();
     CloseWindow();        
 
     return 0;

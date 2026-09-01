@@ -53,10 +53,13 @@ void Game::Update(){
 }
 
 void Game::Draw(){
-    if(currentState == GameState::Playing){
+    playground.Draw();
+    playground.DrawBorderAnimation();
+    
+/*     if(currentState == GameState::Playing){
         playground.Draw();
         playground.DrawBorderAnimation();
-    }
+    } */
 
     // temoporary, create later DrawWinner method
     if(currentState ==GameState::PlayerRedWins){

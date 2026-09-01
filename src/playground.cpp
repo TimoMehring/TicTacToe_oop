@@ -18,6 +18,7 @@ void Playground::LoadAssets(){
 
     // Sound & Music Section
     markSound = LoadSound("assets/mark_sound.wav");
+    winSound = LoadSound("assets/win_sound.wav");
 }
 
 void Playground::UnloadAssets(){
@@ -38,6 +39,7 @@ void Playground::UnloadAssets(){
 
     // Sound & Music
     UnloadSound(markSound);
+    UnloadSound(winSound);
 }
 
 void Playground::InitFields(){
@@ -107,20 +109,24 @@ bool Playground::CheckWin(ZoneState currentZoneState){
     // horizontal check
     for(int row = 0; row < 3; row++){
         if(zones[row][0] == currentZoneState && zones[row][1] == currentZoneState && zones[row][2] == currentZoneState){
+            PlaySound(winSound);
             return true;
         }
     }
     // vertical check
     for(int col = 0; col < 3; col++){
         if(zones[0][col] == currentZoneState && zones[1][col] == currentZoneState && zones[2][col] == currentZoneState){
+            PlaySound(winSound);
             return true;
         }
     }
     // diagonal checks
     if(zones[0][0] == currentZoneState && zones[1][1] == currentZoneState && zones[2][2] == currentZoneState){
+        PlaySound(winSound);
         return true;
     }
     else if(zones[2][0] == currentZoneState && zones[1][1] == currentZoneState && zones[0][2] == currentZoneState){
+        PlaySound(winSound);
         return true;
     }
     
@@ -139,7 +145,7 @@ bool Playground::CheckDraw(){
 }
 
 void Playground::DrawWinningPlayerTextures(ZoneState winner){
-    DrawTextureEx(clearWinningTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE);
+    //DrawTextureEx(clearWinningTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE); 
     if(winner == ZoneState::PlayerRed){
         DrawTextureEx(redPlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
     }
