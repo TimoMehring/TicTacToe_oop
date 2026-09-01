@@ -68,17 +68,9 @@ void Game::Draw(){
     if(currentState == GameState::Playing){
         playground.DrawPlayerTurnAnimation(currentPlayer);
     }
-    
-/*     if(currentState == GameState::Playing){
-        playground.Draw();
-        playground.DrawBorderAnimation();
-    } */
 
     // temoporary, create later DrawWinner method
     if(currentState ==GameState::PlayerRedWins){
-/*         playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
-        DrawText("Wins", 625, 300, 80, WHITE);
-        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY); */
         if(!showRestartText){
             playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
             DrawText("Wins", 625, 300, 80, WHITE);
@@ -86,9 +78,6 @@ void Game::Draw(){
         }
     }
     else if(currentState == GameState::PlayerBlueWins){
-/*         playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
-        DrawText("Wins", 625, 300, 80, WHITE);
-        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY); */
         if(!showRestartText){
             playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
             DrawText("Wins", 625, 300, 80, WHITE);

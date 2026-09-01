@@ -35,7 +35,9 @@ class Playground {
     // Spritesheets
     Texture2D borderAnimationTexture;
     Texture2D playerBlueTurnTexture;
+    Texture2D playerBlueTurnReverseTexture;
     Texture2D playerRedTurnTexture;
+    Texture2D playerRedTurnReverseTexture;
 
     ZoneState zones [3][3];
     Rectangle fields [3][3];

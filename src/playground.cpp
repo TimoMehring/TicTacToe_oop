@@ -18,7 +18,9 @@ void Playground::LoadAssets(){
     // Spritesheets
     borderAnimationTexture = LoadTexture("assets/playground_animation.png");
     playerRedTurnTexture = LoadTexture("assets/PlayerRedTurn.png");
+    playerRedTurnReverseTexture = LoadTexture("assets/PlayerRedTurnReverse.png");
     playerBlueTurnTexture = LoadTexture("assets/PlayerBlueTurn.png");
+    playerBlueTurnReverseTexture = LoadTexture("assets/PlayerBlueTurnReverse.png");
 
     // Sound & Music Section
     markSound = LoadSound("assets/mark_sound.wav");
@@ -43,7 +45,9 @@ void Playground::UnloadAssets(){
     // Spritesheets
     UnloadTexture(borderAnimationTexture);
     UnloadTexture(playerRedTurnTexture);
+    UnloadTexture(playerBlueTurnReverseTexture);
     UnloadTexture(playerBlueTurnTexture);
+    UnloadTexture(playerBlueTurnReverseTexture);
 
 
     // Sound & Music
@@ -219,11 +223,12 @@ void Playground::DrawPlayerTurnAnimation(ZoneState currentZoneState){
 
     if(currentZoneState == ZoneState::PlayerRed){
         DrawTexturePro(playerRedTurnTexture, source2, destination, {0.0f,0.0f},0.0f,WHITE);
-        DrawTextureEx(playerBlueTexture, {50.0f, 200.0f}, 0.0f, 8.0f, WHITE);
-
+        //DrawTextureEx(playerBlueTexture, {50.0f, 200.0f}, 0.0f, 8.0f, WHITE);
+        DrawTexturePro(playerBlueTurnReverseTexture, source2, destination2, {0.0f,0.0f},0.0f,WHITE);
     }
     else if(currentZoneState == ZoneState::PlayerBlue){
         DrawTexturePro(playerBlueTurnTexture, source2, destination2, {0.0f,0.0f},0.0f,WHITE);
-        DrawTextureEx(playerRedTexture, {900.0f, 200.0f}, 0.0f, 8.0f, WHITE);
+        //DrawTextureEx(playerRedTexture, {900.0f, 200.0f}, 0.0f, 8.0f, WHITE);
+        DrawTexturePro(playerRedTurnReverseTexture, source2, destination, {0.0f,0.0f},0.0f,WHITE);
     }
 }
