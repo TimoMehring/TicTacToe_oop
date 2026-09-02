@@ -11,8 +11,6 @@ void Playground::LoadAssets(){
     redPlayerMarkTexture = LoadTexture("assets/playerredmark.png");
     bluePlayerMarkTexture = LoadTexture("assets/playerbluemark.png");
 
-    redPlayerWinsTexture = LoadTexture("assets/playerredwins.png");
-    bluePlayerWinsTexture  = LoadTexture("assets/playerbluewins.png");
 
     // Spritesheets
     borderAnimationTexture = LoadTexture("assets/playground_animation.png");
@@ -42,9 +40,6 @@ void Playground::UnloadAssets(){
 
     UnloadTexture(redPlayerMarkTexture);
     UnloadTexture(bluePlayerMarkTexture);
-
-    UnloadTexture(redPlayerWinsTexture);
-    UnloadTexture(bluePlayerWinsTexture);
 
     // Spritesheets
     UnloadTexture(borderAnimationTexture);

@@ -32,9 +32,6 @@ class Playground {
     Texture2D redPlayerMarkTexture;
     Texture2D bluePlayerMarkTexture;
 
-    Texture2D redPlayerWinsTexture;
-    Texture2D bluePlayerWinsTexture;
-
     // Spritesheets
     Texture2D borderAnimationTexture;
     Texture2D playerBlueTurnTexture;
