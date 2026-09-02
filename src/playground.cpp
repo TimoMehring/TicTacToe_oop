@@ -3,7 +3,7 @@
 void Playground::LoadAssets(){
     // Textures
     playgroundTexture = LoadTexture("assets/playground.png");
-    reloadTexture = LoadTexture("assets/reload.png");
+    wallpaperTexture = LoadTexture("assets/wallpaper.png");
 
     playerRedTexture = LoadTexture("assets/playerred.png");
     playerBlueTexture = LoadTexture("assets/playerblue.png");
@@ -11,7 +11,6 @@ void Playground::LoadAssets(){
     redPlayerMarkTexture = LoadTexture("assets/playerredmark.png");
     bluePlayerMarkTexture = LoadTexture("assets/playerbluemark.png");
 
-    clearWinningTexture = LoadTexture("assets/clear_winning.png");
     redPlayerWinsTexture = LoadTexture("assets/playerredwins.png");
     bluePlayerWinsTexture  = LoadTexture("assets/playerbluewins.png");
 
@@ -28,12 +27,15 @@ void Playground::LoadAssets(){
     // Sound & Music Section
     markSound = LoadSound("assets/mark_sound.wav");
     winSound = LoadSound("assets/win_sound.wav");
+    themeSong = LoadMusicStream("assets/themesong.wav");
+
+
 }
 
 void Playground::UnloadAssets(){
     // Textures
     UnloadTexture(playgroundTexture);
-    UnloadTexture(reloadTexture);
+    UnloadTexture(wallpaperTexture);
 
     UnloadTexture(playerRedTexture);
     UnloadTexture(playerBlueTexture);
@@ -41,7 +43,6 @@ void Playground::UnloadAssets(){
     UnloadTexture(redPlayerMarkTexture);
     UnloadTexture(bluePlayerMarkTexture);
 
-    UnloadTexture(clearWinningTexture);
     UnloadTexture(redPlayerWinsTexture);
     UnloadTexture(bluePlayerWinsTexture);
 
@@ -58,6 +59,7 @@ void Playground::UnloadAssets(){
     // Sound & Music
     UnloadSound(markSound);
     UnloadSound(winSound);
+    UnloadMusicStream(themeSong);
 }
 
 void Playground::InitFields(){
@@ -82,6 +84,14 @@ void Playground::InitFields(){
     }
 }
 
+void Playground::PlayThemeSong(){
+    PlayMusicStream(themeSong);
+}
+
+void Playground::UpdateThemeSong(){
+    UpdateMusicStream(themeSong);
+}
+
 bool Playground::UpdatePlayground(ZoneState currentZoneState){
     Vector2 mousePosition = GetMousePosition();
 
@@ -102,6 +112,9 @@ bool Playground::UpdatePlayground(ZoneState currentZoneState){
 }
 
 void Playground::Draw(){
+    Rectangle sourceWallpaper = {0.0f, 0.0f, static_cast<float>(wallpaperTexture.width), static_cast<float>(wallpaperTexture.height)};
+    Rectangle destinationWallpaper = {0.0f, 0.0f, 1200.0f, 800.0f};
+    DrawTexturePro(wallpaperTexture, sourceWallpaper, destinationWallpaper, {0.0f, 0.0f}, 0.0f, WHITE);
     DrawTextureEx(playgroundTexture, {340.0f, 100.0f}, 0.0f, 10.0f, WHITE);
     //DrawTextureEx(reloadTexture, {550.0f, 650.0f}, 0.0f, 3.0f, WHITE);
 
@@ -176,7 +189,7 @@ void Playground::UpdateWinningPlayerTextures(){
 }
 
 void Playground::DrawWinningPlayerTextures(ZoneState winner){
-    //DrawTextureEx(clearWinningTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE); 
+    //DrawTextureEx(wallpaperTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE); 
 
     float frameWidth = playerRedWinsSpritesheet.width / 3.0f;
     float frameHeight = playerRedWinsSpritesheet.height;

@@ -23,9 +23,11 @@ void Game::UnloadGraphics(){
 
 void Game::Init(){
     playground.InitFields();
+    playground.PlayThemeSong();
 }
 
 void Game::Update(){
+    playground.UpdateThemeSong();
     if(currentState == GameState::Playing){
         playground.UpdatePlayerTurnAnimation();
         playground.UpdateBorderAnimation();

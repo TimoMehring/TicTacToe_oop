@@ -25,14 +25,13 @@ class Playground {
     int currentWinningFrame;
     float winningAnimationTimer = 0.0f;
 
-    Texture2D reloadTexture;
+    Texture2D wallpaperTexture;
     Texture2D playerRedTexture;
     Texture2D playerBlueTexture;
 
     Texture2D redPlayerMarkTexture;
     Texture2D bluePlayerMarkTexture;
 
-    Texture2D clearWinningTexture;
     Texture2D redPlayerWinsTexture;
     Texture2D bluePlayerWinsTexture;
 
@@ -49,14 +48,18 @@ class Playground {
     ZoneState zones [3][3];
     Rectangle fields [3][3];
 
+    // Sound & Music
     Sound markSound;
     Sound winSound;
+    Music themeSong;
 
 
     public:
     void LoadAssets();
     void UnloadAssets();
 
+    void PlayThemeSong();
+    void UpdateThemeSong();
     void InitFields();
     bool UpdatePlayground(ZoneState currentZoneState);
     void Draw();
