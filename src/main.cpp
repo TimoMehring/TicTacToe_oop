@@ -11,6 +11,9 @@ int main(void)
     InitAudioDevice();
 
     SetTargetFPS(60); 
+    Image icon = LoadImage("assets/icon.png");
+    SetWindowIcon(icon);
+
     
     Game game;
     game.LoadGraphics();
@@ -31,6 +34,7 @@ int main(void)
         
     }
     game.UnloadGraphics();
+    UnloadImage(icon);
 
     CloseAudioDevice();
     CloseWindow();        
