@@ -47,13 +47,8 @@ void Game::Update(){
         }
     }
     else if(currentState == GameState::PlayerRedWins || currentState == GameState::PlayerBlueWins || currentState == GameState::Draw){
-        // little text animation for winScreen
-        restartTextTimer += GetFrameTime();
 
-        if(restartTextTimer >= 1.1f){
-            showRestartText = !showRestartText;
-            restartTextTimer = 0.0f;
-        }
+        playground.UpdateWinningPlayerTextures();
 
         if(IsKeyPressed(KEY_ENTER) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             ResetGame();
@@ -69,20 +64,12 @@ void Game::Draw(){
         playground.DrawPlayerTurnAnimation(currentPlayer);
     }
 
-    // temoporary, create later DrawWinner method
     if(currentState ==GameState::PlayerRedWins){
-        if(!showRestartText){
             playground.DrawWinningPlayerTextures(ZoneState::PlayerRed);
-            DrawText("Wins", 625, 300, 80, WHITE);
-            DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
-        }
     }
     else if(currentState == GameState::PlayerBlueWins){
-        if(!showRestartText){
             playground.DrawWinningPlayerTextures(ZoneState::PlayerBlue);
-            DrawText("Wins", 625, 300, 80, WHITE);
-            DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
-        }
+        
     }
     else if(currentState == GameState::Draw){
         DrawText("Draw", 625, 300, 80, WHITE);
@@ -103,8 +90,6 @@ void Game::ResetGame(){
     currentState = GameState::Playing;
     currentPlayer = ZoneState::PlayerRed;
 
-    restartTextTimer = 0.0f;
-    showRestartText = true;
 
     playground.Reset();
 }

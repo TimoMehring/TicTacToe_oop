@@ -21,6 +21,8 @@ void Playground::LoadAssets(){
     playerRedTurnReverseTexture = LoadTexture("assets/PlayerRedTurnReverse.png");
     playerBlueTurnTexture = LoadTexture("assets/PlayerBlueTurn.png");
     playerBlueTurnReverseTexture = LoadTexture("assets/PlayerBlueTurnReverse.png");
+    playerRedWinsSpritesheet = LoadTexture("assets/playerredwins_spritesheet.png");
+    playerBlueWinsSpritesheet = LoadTexture("assets/playerbluewins_spritesheet.png");
 
     // Sound & Music Section
     markSound = LoadSound("assets/mark_sound.wav");
@@ -48,7 +50,8 @@ void Playground::UnloadAssets(){
     UnloadTexture(playerBlueTurnReverseTexture);
     UnloadTexture(playerBlueTurnTexture);
     UnloadTexture(playerBlueTurnReverseTexture);
-
+    UnloadTexture(playerRedWinsSpritesheet);
+    UnloadTexture(playerBlueWinsSpritesheet);
 
     // Sound & Music
     UnloadSound(markSound);
@@ -156,7 +159,47 @@ bool Playground::CheckDraw(){
     return true;
 }
 
+void Playground::UpdateWinningPlayerTextures(){
+    winningAnimationTimer += GetFrameTime();
+
+    if(winningAnimationTimer >= 0.7){
+        currentWinningFrame++;
+
+        if(currentWinningFrame >= 3){
+            currentWinningFrame = 0;
+        }
+        winningAnimationTimer = 0.0f;
+    }
+}
+
 void Playground::DrawWinningPlayerTextures(ZoneState winner){
+    //DrawTextureEx(clearWinningTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE); 
+
+    float frameWidth = playerRedWinsSpritesheet.width / 3.0f;
+    float frameHeight = playerRedWinsSpritesheet.height;
+
+    Rectangle source = {currentWinningFrame * frameWidth, 0.0f, frameWidth, frameHeight};
+    Rectangle destination = {325.0f, 200.0f, frameWidth * 5.5f, frameHeight *5.5f};
+
+    if(winner == ZoneState::PlayerRed){
+        //DrawTextureEx(redPlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
+        DrawTexturePro(playerRedWinsSpritesheet, source, destination, {0.0f, 0.0f}, 0.0f, WHITE);
+        if(currentWinningFrame != 2){
+            DrawText("Wins", 625, 300, 80, WHITE);
+            DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
+        }
+    }
+    else if(winner == ZoneState::PlayerBlue){
+       // DrawTextureEx(bluePlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
+       DrawTexturePro(playerBlueWinsSpritesheet, source, destination, {0.0f, 0.0f}, 0.0f, WHITE);
+       if(currentWinningFrame != 2){
+            DrawText("Wins", 625, 300, 80, WHITE);
+            DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
+       }
+    }
+}
+
+/* void Playground::DrawWinningPlayerTextures(ZoneState winner){
     //DrawTextureEx(clearWinningTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE); 
     if(winner == ZoneState::PlayerRed){
         DrawTextureEx(redPlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
@@ -164,7 +207,7 @@ void Playground::DrawWinningPlayerTextures(ZoneState winner){
     else if(winner == ZoneState::PlayerBlue){
         DrawTextureEx(bluePlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
     }
-}
+} */
 
 void Playground::UpdateBorderAnimation(){
     borderAnimationTimer += GetFrameTime();
@@ -195,6 +238,8 @@ void Playground::Reset(){
             zones[row][col] = ZoneState::Empty;
         }
     }
+    currentWinningFrame = 0;
+    winningAnimationTimer = 0;
 }
 
 void Playground::UpdatePlayerTurnAnimation(){

@@ -21,6 +21,10 @@ class Playground {
     int currentPlayerTurnFrame = 0;
     float turnAnimationTimer = 0.0f;
 
+    // Winning Player Animation
+    int currentWinningFrame;
+    float winningAnimationTimer = 0.0f;
+
     Texture2D reloadTexture;
     Texture2D playerRedTexture;
     Texture2D playerBlueTexture;
@@ -38,6 +42,8 @@ class Playground {
     Texture2D playerBlueTurnReverseTexture;
     Texture2D playerRedTurnTexture;
     Texture2D playerRedTurnReverseTexture;
+    Texture2D playerRedWinsSpritesheet;
+    Texture2D playerBlueWinsSpritesheet;
 
     ZoneState zones [3][3];
     Rectangle fields [3][3];
@@ -53,6 +59,8 @@ class Playground {
     void InitFields();
     bool UpdatePlayground(ZoneState currentZoneState);
     void Draw();
+
+    void UpdateWinningPlayerTextures();
     void DrawWinningPlayerTextures(ZoneState winner);
 
     bool CheckWin(ZoneState currentZoneState);

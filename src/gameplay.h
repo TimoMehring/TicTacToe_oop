@@ -15,8 +15,6 @@ class Game {
     GameState currentState = GameState::Playing;
     ZoneState currentPlayer = ZoneState::PlayerRed;
 
-    float restartTextTimer = 0.0f;
-    bool showRestartText = true;
 
     public:
     void LoadGraphics();
