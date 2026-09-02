@@ -44,6 +44,7 @@ class Playground {
     Texture2D playerRedTurnReverseTexture;
     Texture2D playerRedWinsSpritesheet;
     Texture2D playerBlueWinsSpritesheet;
+    Texture2D playerDrawSpritesheet;
 
     ZoneState zones [3][3];
     Rectangle fields [3][3];
@@ -62,6 +63,7 @@ class Playground {
 
     void UpdateWinningPlayerTextures();
     void DrawWinningPlayerTextures(ZoneState winner);
+    void DrawMatchResultDraw();
 
     bool CheckWin(ZoneState currentZoneState);
     bool CheckDraw();

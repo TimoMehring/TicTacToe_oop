@@ -23,6 +23,7 @@ void Playground::LoadAssets(){
     playerBlueTurnReverseTexture = LoadTexture("assets/PlayerBlueTurnReverse.png");
     playerRedWinsSpritesheet = LoadTexture("assets/playerredwins_spritesheet.png");
     playerBlueWinsSpritesheet = LoadTexture("assets/playerbluewins_spritesheet.png");
+    playerDrawSpritesheet = LoadTexture("assets/draw_spritesheet.png");
 
     // Sound & Music Section
     markSound = LoadSound("assets/mark_sound.wav");
@@ -52,6 +53,7 @@ void Playground::UnloadAssets(){
     UnloadTexture(playerBlueTurnReverseTexture);
     UnloadTexture(playerRedWinsSpritesheet);
     UnloadTexture(playerBlueWinsSpritesheet);
+    UnloadTexture(playerDrawSpritesheet);
 
     // Sound & Music
     UnloadSound(markSound);
@@ -199,15 +201,23 @@ void Playground::DrawWinningPlayerTextures(ZoneState winner){
     }
 }
 
-/* void Playground::DrawWinningPlayerTextures(ZoneState winner){
-    //DrawTextureEx(clearWinningTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE); 
-    if(winner == ZoneState::PlayerRed){
-        DrawTextureEx(redPlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
+void Playground::DrawMatchResultDraw(){
+    float frameWidth = playerDrawSpritesheet.width / 3.0f;
+    float frameHeight = playerDrawSpritesheet.height;
+
+    Rectangle source = {currentWinningFrame * frameWidth, 0.0f, frameWidth, frameHeight};
+    Rectangle destination = {325.0f, 200.0f, frameWidth * 5.5f, frameHeight *5.5f};
+
+    DrawTexturePro(playerDrawSpritesheet, source, destination, {0.0f, 0.0f}, 0.0f, WHITE);
+    
+    if(currentWinningFrame != 2){
+        DrawText("Draw", 570, 340, 25, WHITE);
+        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, LIGHTGRAY);
     }
-    else if(winner == ZoneState::PlayerBlue){
-        DrawTextureEx(bluePlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
-    }
-} */
+       
+
+}
+
 
 void Playground::UpdateBorderAnimation(){
     borderAnimationTimer += GetFrameTime();
@@ -245,7 +255,7 @@ void Playground::Reset(){
 void Playground::UpdatePlayerTurnAnimation(){
     turnAnimationTimer += GetFrameTime();
 
-    if(turnAnimationTimer >= 0.5){
+    if(turnAnimationTimer >= 0.7){
         currentPlayerTurnFrame++;
 
         if(currentPlayerTurnFrame >= 2){
@@ -260,9 +270,9 @@ void Playground::DrawPlayerTurnAnimation(ZoneState currentZoneState){
     float frameWidth = playerBlueTurnTexture.width / 2.0f;
     float frameHeight = playerBlueTurnTexture.height;
 
-    //Rectangle source = {currentBorderFrame * frameWidth, currentBorderFrame * 0.0f, frameWidth, frameHeight};
+    
     Rectangle source2 = {currentPlayerTurnFrame * frameWidth, 0.0f, frameWidth, frameHeight};
-    //Rectangle destination = {320.0f, 80.0f, frameWidth  * 10.0f, frameHeight * 10.0f};
+    
     Rectangle destination = {900.0f, 200.0f, frameWidth * 8.0f, frameHeight * 8.0f};
     Rectangle destination2 = {50.0f, 200.0f, frameWidth * 8.0f, frameHeight * 8.0f};
 

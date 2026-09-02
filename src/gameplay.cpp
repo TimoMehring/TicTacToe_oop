@@ -72,8 +72,7 @@ void Game::Draw(){
         
     }
     else if(currentState == GameState::Draw){
-        DrawText("Draw", 625, 300, 80, WHITE);
-        DrawText("Press Enter or Left-Click to Restart Match", 370, 435, 20.0, WHITE);
+        playground.DrawMatchResultDraw();
     }
 }
 
