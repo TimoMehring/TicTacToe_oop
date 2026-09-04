@@ -41,6 +41,10 @@ be restarted.
 
 The project uses an object-oriented structure with two main classes.
 
+### Class Diagram
+
+![TicTacToe OOP Class Diagram](media/class_diagramm.png)
+
 
 ### Game
 `Game` manages the general game flow, including:
