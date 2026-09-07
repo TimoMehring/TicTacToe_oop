@@ -22,7 +22,7 @@ class Playground {
     float turnAnimationTimer = 0.0f;
 
     // Winning Player Animation
-    int currentWinningFrame;
+    int currentWinningFrame = 0;
     float winningAnimationTimer = 0.0f;
 
     Texture2D wallpaperTexture;
