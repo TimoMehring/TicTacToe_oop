@@ -179,8 +179,7 @@ void Playground::UpdateWinningPlayerTextures(){
     }
 }
 
-void Playground::DrawWinningPlayerTextures(ZoneState winner){
-    //DrawTextureEx(wallpaperTexture, {0.0f, 0.0f}, 0.0f, 1.0f, WHITE); 
+void Playground::DrawWinningPlayerTextures(ZoneState winner){ 
 
     float frameWidth = playerRedWinsSpritesheet.width / 3.0f;
     float frameHeight = playerRedWinsSpritesheet.height;
@@ -189,7 +188,6 @@ void Playground::DrawWinningPlayerTextures(ZoneState winner){
     Rectangle destination = {325.0f, 200.0f, frameWidth * 5.5f, frameHeight *5.5f};
 
     if(winner == ZoneState::PlayerRed){
-        //DrawTextureEx(redPlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
         DrawTexturePro(playerRedWinsSpritesheet, source, destination, {0.0f, 0.0f}, 0.0f, WHITE);
         if(currentWinningFrame != 2){
             DrawText("Wins", 625, 300, 80, WHITE);
@@ -197,7 +195,6 @@ void Playground::DrawWinningPlayerTextures(ZoneState winner){
         }
     }
     else if(winner == ZoneState::PlayerBlue){
-       // DrawTextureEx(bluePlayerWinsTexture, {325.0f, 200.0f}, 0.0f, 5.5f, WHITE);
        DrawTexturePro(playerBlueWinsSpritesheet, source, destination, {0.0f, 0.0f}, 0.0f, WHITE);
        if(currentWinningFrame != 2){
             DrawText("Wins", 625, 300, 80, WHITE);
