@@ -46,7 +46,7 @@ void Playground::UnloadAssets(){
     UnloadTexture(playerRedTurnTexture);
     UnloadTexture(playerBlueTurnReverseTexture);
     UnloadTexture(playerBlueTurnTexture);
-    UnloadTexture(playerBlueTurnReverseTexture);
+    UnloadTexture(playerRedTurnReverseTexture);
     UnloadTexture(playerRedWinsSpritesheet);
     UnloadTexture(playerBlueWinsSpritesheet);
     UnloadTexture(playerDrawSpritesheet);
