@@ -1,18 +1,5 @@
 #include "gameplay.h"
 
-/* void Game::ChooseStartingPlayer(){
-    int randomPlayer = GetRandomValue(0, 1);
-
-     if (randomPlayer == 0){
-        currentState = GameState::PlayerRedTurn;
-     }
-     else{
-        currentState = GameState::PlayerBlueWins;
-     }
-} */
-
-
-
 void Game::LoadGraphics(){
     playground.LoadAssets();
 }
