@@ -111,7 +111,7 @@ void Playground::Draw(){
     Rectangle destinationWallpaper = {0.0f, 0.0f, 1200.0f, 800.0f};
     DrawTexturePro(wallpaperTexture, sourceWallpaper, destinationWallpaper, {0.0f, 0.0f}, 0.0f, WHITE);
     DrawTextureEx(playgroundTexture, {340.0f, 100.0f}, 0.0f, 10.0f, WHITE);
-    
+
     for (int row = 0; row < 3; row++){
         for (int col = 0; col < 3; col++){
             if (zones[row][col] == ZoneState::PlayerRed){
@@ -284,11 +284,9 @@ void Playground::DrawPlayerTurnAnimation(ZoneState currentZoneState){
     if(currentZoneState == ZoneState::PlayerRed){
         DrawTexturePro(playerRedTurnTexture, source2, destination, {0.0f,0.0f},0.0f,WHITE);
         DrawTextureEx(playerBlueTexture, {50.0f, 200.0f}, 0.0f, 8.0f, WHITE);
-        //DrawTexturePro(playerBlueTurnReverseTexture, source2, destination2, {0.0f,0.0f},0.0f,WHITE);
     }
     else if(currentZoneState == ZoneState::PlayerBlue){
         DrawTexturePro(playerBlueTurnTexture, source2, destination2, {0.0f,0.0f},0.0f,WHITE);
         DrawTextureEx(playerRedTexture, {900.0f, 200.0f}, 0.0f, 8.0f, WHITE);
-        //DrawTexturePro(playerRedTurnReverseTexture, source2, destination, {0.0f,0.0f},0.0f,WHITE);
     }
 }
