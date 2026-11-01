@@ -48,7 +48,9 @@ void Game::Update(){
             }
         }
     }
-    else if(currentState == GameState::PlayerRedWins || currentState == GameState::PlayerBlueWins || currentState == GameState::Draw){
+    else if(currentState == GameState::PlayerRedWins || 
+        currentState == GameState::PlayerBlueWins || 
+        currentState == GameState::Draw){
 
         playground.UpdateWinningPlayerTextures();
 
